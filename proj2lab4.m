@@ -70,7 +70,7 @@ str1 = sprintf('%s%d','O nº de objectos é ',N)
 
 %EX3
 %------------------------------------------------
-imgbk = imread('MATERIAL\\PETS09-S2L1\\img1\\000001.jpg');
+imgbk = imread('3DMOT2015\\3DMOT2015\\train\\PETS09-S2L1\\img1\\000001.jpg');
 
 thr = 40;
 minArea = 200;
@@ -87,7 +87,7 @@ se = strel('disk', 3);
 figure;
 
 for i=0:seqLength
-    imgfr = imread(sprintf('MATERIAL\\PETS09-S2L1\\img1\\000%.3d.jpg',baseNum+i));
+    imgfr = imread(sprintf('3DMOT2015\\3DMOT2015\\train\\PETS09-S2L1\\img1\\000%.3d.jpg',baseNum+i));
     imshow(imgfr);
     imgdif=...
         (abs(double(imgbk(:,:,1)) - double(imgfr(:,:,1))) > thr) | ...
