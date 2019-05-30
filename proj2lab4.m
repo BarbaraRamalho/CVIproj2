@@ -5,7 +5,7 @@ clear all, close all
 %------------------------------------------------
 imgbk = imread('3DMOT2015\\3DMOT2015\\train\\PETS09-S2L1\\img1\\000001.jpg');
 
-thr = 40;
+thr = 70;
 minArea = 200;
 maxArea = 7000;
 
@@ -49,12 +49,9 @@ for i=0:seqLength
     regnum = length(inds);
     
     if regnum
-        
-        
-        
         for j=1:regnum
             [lin col] = find(lb == inds(j));
-            upLPoint = min([lin col])
+            upLPoint = min([lin col]) 
             dWindow = max([lin col]) - upLPoint + 1;
             
             rectangle('Position', [fliplr(upLPoint) fliplr(dWindow)],...

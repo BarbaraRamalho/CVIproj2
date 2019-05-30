@@ -1,51 +1,44 @@
 function [ str1 ] = Bkgimage( myPath )
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
-
-
-
+clear all, close all
 
 % EX 1
 %------------------------------------------------
 
-%myPath = '3DMOT2015\\3DMOT2015\\train\\PETS09-S2L1\\img1\\';
-
+myPath = '3DMOT2015\\3DMOT2015\\train\\PETS09-S2L1\\img1\\';
 frameIdComp = 6;
 
 str = ['%s%.' num2str(frameIdComp) 'd.%s'];
-nFrame = 230;
-
+nFrame = 300;
 step = 4;
-%{
+
 for k = 1: 1 : nFrame
-    str1 = sprintf(str, myPath,k,'png')
+    str1 = sprintf(str, myPath,k,'jpg')
     img = imread(str1);
     vid4D(:,:,:,k) = img;
     %imshow(img); drawnow
     
 end
-%}
 
-alpha = 0.015; % CHANGEN THIS VALUE FOR EPICNESS FADES, THIS IS HORROR MATERIAL
+%alpha = 0.015; % CHANGEN THIS VALUE FOR EPICNESS FADES, THIS IS HORROR MATERIAL
 
-for k = 50 : step : 310
-    if k == 50
-        str1 = sprintf(str, myPath,k,'jpg')
-        img = imread(str1);
-        Bkg = zeros(size(img));
-    end
-    str1 = sprintf(str, myPath,k,'jpg')
-    img = imread(str1);
-    Bkg = alpha * double(img) + (1 - alpha) * double(Bkg);
-    imshow(uint8(Bkg)); drawnow
-    pause(.2)
-    %imshow(img); drawnow
-    
-end
+% for k = 1: 1 : nFrame
+%     if k == 1
+%         str1 = sprintf(str, myPath,k,'jpg')
+%         img = imread(str1);
+%         Bkg = zeros(size(img));
+%     end
+%     str1 = sprintf(str, myPath,k,'jpg')
+%     img = imread(str1);
+%     Bkg = alpha * double(img) + (1 - alpha) * double(Bkg);
+%     imshow(uint8(Bkg)); drawnow
+%     pause(.2)
+%     %imshow(img); drawnow
+%     
+% end
 
-%bkg = median(vid4D,4);
+bkg = median(vid4D,4);
 
-%figure, imshow(uint8(bkg));
+figure, imshow(uint8(bkg));
 
 
 %------------------------------------------------
@@ -70,6 +63,3 @@ end
     the result of this will be (the path + the digitnumber (0000 as
     exmple)+ . + png in other words,  mypath\0000.png
 %}
-
-end
-
